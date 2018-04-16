@@ -41,7 +41,16 @@ namespace JukeBoxv1._1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            String PathOFMediaFolder = Directory.GetCurrentDirectory() + "\\Media\\"; //Gets the path for the folder of the songs
+            StreamReader SongsFromMediaFolder = File.OpenText(PathOFMediaFolder + "Media.txt"); //Opens the text file containing the info about the songs
+            String ReadMediaInformation = SongsFromMediaFolder.ReadLine(); //Reads each line of the text file to get the track data
+
+            int CheckIfLineIsInt; //creating variable to check if text file is a integer
+
+            if(int.TryParse(ReadMediaInformation, out CheckIfLineIsInt)){//Checks if the line is a number
+                Imported_Songs = new ListBox[CheckIfLineIsInt];//if the line is a number then create a new listbox
+            }
+
         }
     }
 }
