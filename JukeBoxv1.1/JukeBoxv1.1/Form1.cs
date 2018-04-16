@@ -46,11 +46,27 @@ namespace JukeBoxv1._1
             String ReadMediaInformation = SongsFromMediaFolder.ReadLine(); //Reads each line of the text file to get the track data
 
             int CheckIfLineIsInt; //creating variable to check if text file is a integer
-
             if(int.TryParse(ReadMediaInformation, out CheckIfLineIsInt)){//Checks if the line is a number
                 Imported_Songs = new ListBox[CheckIfLineIsInt];//if the line is a number then create a new listbox
             }
 
+            int CountOfImportedTracks = Imported_Songs.Count(); //Counts the amount of songs that are in the listbox
+            HScrollBar.Maximum = CountOfImportedTracks - 1;//Sets the scope for the horizontal scroll bar
+            Name_of_Genre = new string[CountOfImportedTracks];//Assgns the Title of the listbox to the global variable
+            ReadMediaInformation = SongsFromMediaFolder.ReadLine();//Reads the line of the textfile again and assigns to local var
+
+            for(int index = 0; index < CountOfImportedTracks; index++){//For loop to go through each line of the text file to pull out the required information
+                Imported_Songs[index] = new ListBox();//Creates a new list box
+                if(int.TryParse(ReadMediaInformation, out CheckIfLineIsInt) == true){//Check to make sure the line is an integer
+                    //If it is integer....
+                    ReadMediaInformation = SongsFromMediaFolder.ReadLine();//Reads a line from the text file..
+                    Name_of_Genre[index] = ReadMediaInformation;//Assigns the first line of the file to the genre title string global var
+                    ReadMediaInformation = SongsFromMediaFolder.ReadLine();//Reads another line from the text file...
+
+                    
+
+                }
+            }
         }
     }
 }
