@@ -35,7 +35,7 @@ namespace JukeBoxv1._1
         bool IsSongPlaying = false; //bool to state if a song is playing of not (for initiating timers)
 
         String PathOFMediaFolder = Directory.GetCurrentDirectory() + "\\Media\\"; //Gets the path for the folder of the songs
-
+        String PathOfTrackFolder = Directory.GetCurrentDirectory() + "\\Tracks\\"; // Gets the path of the folder for the tracks 
         private void Mediaplayer_wmp_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
 
@@ -73,11 +73,20 @@ namespace JukeBoxv1._1
         private void GenreList_lst_MouseDoubleClick(object sender, MouseEventArgs e) { 
             string WhichSongChosen = GenreList_lst.Items[GenreList_lst.SelectedIndex].ToString();
             //Assigns the song that has been double clicked by getting the selected index
-            if(IsSongPlaying == true){
-                Playlist_lst.Items.Add(WhichSongChosen);
-            }else if(Playlist_lst.Items.Count == 0 && IsSongPlaying == false){
+            if(IsSongPlaying == true){//If a song is playing....
+                Playlist_lst.Items.Add(WhichSongChosen);//Add the selected song to the playlist list box 
+            }else if(IsSongPlaying == false){//If there are no songs playing....
+                PresentlyPlaying_txt.Text = WhichSongChosen;//Storing the song that has been chosen in the textbox so we know what song is playing
+                Mediaplayer_wmp.URL = PathOfTrackFolder + WhichSongChosen; //Creating the whole URL/Path for the Windows Media Player
+                Play_Windows_Media_Player();//Calling the function to play the media player
                 
             }
+        }
+
+        private void Play_Windows_Media_Player()
+        {
+            Mediaplayer_wmp.Ctlcontrols.play();//Initiating the windows media player
+            IsSongPlaying = true;//set the boolean to true as a song is currently playing
         }
     }
 }
