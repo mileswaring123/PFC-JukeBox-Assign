@@ -36,10 +36,6 @@ namespace JukeBoxv1._1
 
         String PathOFMediaFolder = Directory.GetCurrentDirectory() + "\\Media\\"; //Gets the path for the folder of the songs
         String PathOfTrackFolder = Directory.GetCurrentDirectory() + "\\Tracks\\"; // Gets the path of the folder for the tracks 
-        private void Mediaplayer_wmp_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
-        {
-
-        }
 
         private void Form1_Load(object sender, EventArgs e){
             StreamReader SongsFromMediaFolder = File.OpenText(PathOFMediaFolder + "Media.txt"); //Opens the text file containing the info about the songs
@@ -83,10 +79,20 @@ namespace JukeBoxv1._1
             }
         }
 
-        private void Play_Windows_Media_Player()
-        {
+        private void Play_Windows_Media_Player(){
             Mediaplayer_wmp.Ctlcontrols.play();//Initiating the windows media player
             IsSongPlaying = true;//set the boolean to true as a song is currently playing
         }
+
+        private void Mediaplayer_wmp_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e){
+            if(Mediaplayer_wmp.playState == WMPLib.WMPPlayState.wmppsStopped){//Checking to see if the media player status is stopped
+                //if it is....
+                IsSongPlaying = false;//Set the boolean var to false
+            }else{
+                //If it isnt....
+                IsSongPlaying = true;//set boolean var to true
+            }
+        }
+
     }
 }
