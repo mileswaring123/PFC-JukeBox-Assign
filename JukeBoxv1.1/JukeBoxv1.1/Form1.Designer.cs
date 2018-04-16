@@ -38,7 +38,9 @@
             this.HScrollBar = new System.Windows.Forms.HScrollBar();
             this.PresentlyPlaying_txt = new System.Windows.Forms.TextBox();
             this.Playlist_lst = new System.Windows.Forms.ListBox();
+            this.Mediaplayer_wmp = new AxWMPLib.AxWindowsMediaPlayer();
             this.MenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Mediaplayer_wmp)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_Copyright
@@ -118,6 +120,17 @@
             this.Playlist_lst.Size = new System.Drawing.Size(120, 95);
             this.Playlist_lst.TabIndex = 6;
             // 
+            // Mediaplayer_wmp
+            // 
+            this.Mediaplayer_wmp.Enabled = true;
+            this.Mediaplayer_wmp.Location = new System.Drawing.Point(0, -1);
+            this.Mediaplayer_wmp.Name = "Mediaplayer_wmp";
+            this.Mediaplayer_wmp.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("Mediaplayer_wmp.OcxState")));
+            this.Mediaplayer_wmp.Size = new System.Drawing.Size(75, 23);
+            this.Mediaplayer_wmp.TabIndex = 7;
+            this.Mediaplayer_wmp.Visible = false;
+            this.Mediaplayer_wmp.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.Mediaplayer_wmp_PlayStateChange);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -125,6 +138,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(405, 458);
+            this.Controls.Add(this.Mediaplayer_wmp);
             this.Controls.Add(this.Playlist_lst);
             this.Controls.Add(this.PresentlyPlaying_txt);
             this.Controls.Add(this.HScrollBar);
@@ -138,6 +152,7 @@
             this.Text = "Form1";
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Mediaplayer_wmp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,6 +169,7 @@
         private System.Windows.Forms.HScrollBar HScrollBar;
         private System.Windows.Forms.TextBox PresentlyPlaying_txt;
         private System.Windows.Forms.ListBox Playlist_lst;
+        private AxWMPLib.AxWindowsMediaPlayer Mediaplayer_wmp;
     }
 }
 
