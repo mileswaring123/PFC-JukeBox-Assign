@@ -79,10 +79,20 @@ namespace JukeBoxv1._1
             }
         }
 
+        private void IncrementToNextTrack(){
+            int index = 0;//create a variable to assign an index value to
+            PresentlyPlaying_txt.Text = Playlist_lst.Items[index].ToString();//Adds in the next presently playing track to the text box for presently playing
+            Playlist_lst.Items.RemoveAt(index);//Removes the song that was before it
+
+            Mediaplayer_wmp.URL = PathOfTrackFolder + PresentlyPlaying_txt.Text;//Creating the complete URL/PATH for the media player
+            Play_Windows_Media_Player();//Calling the function to play the media player
+        }
+
         private void Play_Windows_Media_Player(){
             Mediaplayer_wmp.Ctlcontrols.play();//Initiating the windows media player
             IsSongPlaying = true;//set the boolean to true as a song is currently playing
         }
+
 
         private void Mediaplayer_wmp_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e){
             if(Mediaplayer_wmp.playState == WMPLib.WMPPlayState.wmppsStopped){//Checking to see if the media player status is stopped
