@@ -95,6 +95,7 @@
             this.GenreList_lst.Name = "GenreList_lst";
             this.GenreList_lst.Size = new System.Drawing.Size(155, 95);
             this.GenreList_lst.TabIndex = 3;
+            this.GenreList_lst.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.GenreList_lst_MouseDoubleClick);
             // 
             // HScrollBar
             // 

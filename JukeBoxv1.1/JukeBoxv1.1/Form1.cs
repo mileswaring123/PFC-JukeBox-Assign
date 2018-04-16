@@ -34,17 +34,16 @@ namespace JukeBoxv1._1
         String[] Name_of_Genre; //String to hold the name of the genre that has been chosen
         bool IsSongPlaying = false; //bool to state if a song is playing of not (for initiating timers)
 
+        String PathOFMediaFolder = Directory.GetCurrentDirectory() + "\\Media\\"; //Gets the path for the folder of the songs
+
         private void Mediaplayer_wmp_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            String PathOFMediaFolder = Directory.GetCurrentDirectory() + "\\Media\\"; //Gets the path for the folder of the songs
+        private void Form1_Load(object sender, EventArgs e){
             StreamReader SongsFromMediaFolder = File.OpenText(PathOFMediaFolder + "Media.txt"); //Opens the text file containing the info about the songs
             String ReadMediaInformation = SongsFromMediaFolder.ReadLine(); //Reads each line of the text file to get the track data
-
             int CheckIfLineIsInt; //creating variable to check if text file is a integer
             if(int.TryParse(ReadMediaInformation, out CheckIfLineIsInt)){//Checks if the line is a number
                 Imported_Songs = new ListBox[CheckIfLineIsInt];//if the line is a number then create a new listbox
@@ -63,9 +62,21 @@ namespace JukeBoxv1._1
                     Name_of_Genre[index] = ReadMediaInformation;//Assigns the first line of the file to the genre title string global var
                     ReadMediaInformation = SongsFromMediaFolder.ReadLine();//Reads another line from the text file...
 
-                    
-
+                    while (ReadMediaInformation != null && (int.TryParse(ReadMediaInformation, out CheckIfLineIsInt) == true){//While loop to check if th line is either empty or an integer
+                        Imported_Songs[index].Items.Add(SongsFromMediaFolder);//Adding items to the listbox 
+                        ReadMediaInformation = SongsFromMediaFolder.ReadLine();// Reading Another line from the text file
+                    }
                 }
+            }
+        }
+
+        private void GenreList_lst_MouseDoubleClick(object sender, MouseEventArgs e) { 
+            string WhichSongChosen = GenreList_lst.Items[GenreList_lst.SelectedIndex].ToString();
+            //Assigns the song that has been double clicked by getting the selected index
+            if(IsSongPlaying == true){
+                Playlist_lst.Items.Add(WhichSongChosen);
+            }else if(Playlist_lst.Items.Count == 0 && IsSongPlaying == false){
+                
             }
         }
     }
