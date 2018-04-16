@@ -64,6 +64,7 @@ namespace JukeBoxv1._1
                     }
                 }
             }
+            UpdateAndDisplayMediaInformation();
         }
 
         private void GenreList_lst_MouseDoubleClick(object sender, MouseEventArgs e) { 
@@ -104,5 +105,16 @@ namespace JukeBoxv1._1
             }
         }
 
+        private void UpdateAndDisplayMediaInformation()
+        {
+            GenreList_lst.Items.Clear();//Clear the items that are currently in the genre list box
+            int ScrollBarPosition = HScrollBar.Value;//Capturing the vaule of the scroll bar
+            GenreTitle_txt.Text = Name_of_Genre[ScrollBarPosition]; // Assigning the genre title to the text box
+
+            for(int Index = 0; Index < Imported_Songs[ScrollBarPosition].Items.Count; Index++){//A for loop that will go through and add songs to the genre list box
+                GenreList_lst.Items.Add(Imported_Songs[ScrollBarPosition].Items[Index]);//Song is added to the genre list box using the index variable
+            }
+
+        }
     }
 }

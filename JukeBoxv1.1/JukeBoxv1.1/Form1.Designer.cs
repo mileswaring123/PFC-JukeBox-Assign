@@ -103,6 +103,7 @@
             this.HScrollBar.Name = "HScrollBar";
             this.HScrollBar.Size = new System.Drawing.Size(155, 20);
             this.HScrollBar.TabIndex = 4;
+           
             // 
             // PresentlyPlaying_txt
             // 
