@@ -58,7 +58,7 @@ namespace JukeBoxv1._1
                     Name_of_Genre[index] = ReadMediaInformation;//Assigns the first line of the file to the genre title string global var
                     ReadMediaInformation = SongsFromMediaFolder.ReadLine();//Reads another line from the text file...
 
-                    while (ReadMediaInformation != null && (int.TryParse(ReadMediaInformation, out CheckIfLineIsInt) == true){//While loop to check if th line is either empty or an integer
+                    while (ReadMediaInformation != null && (int.TryParse(ReadMediaInformation, out CheckIfLineIsInt) == true)){//While loop to check if th line is either empty or an integer
                         Imported_Songs[index].Items.Add(SongsFromMediaFolder);//Adding items to the listbox 
                         ReadMediaInformation = SongsFromMediaFolder.ReadLine();// Reading Another line from the text file
                     }
@@ -115,6 +115,11 @@ namespace JukeBoxv1._1
                 GenreList_lst.Items.Add(Imported_Songs[ScrollBarPosition].Items[Index]);//Song is added to the genre list box using the index variable
             }
 
+        }
+
+        private void HScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateAndDisplayMediaInformation();
         }
     }
 }
